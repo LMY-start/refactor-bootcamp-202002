@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FibonacciGeneratorTest {
 
@@ -53,5 +54,15 @@ class FibonacciGeneratorTest {
     public void should_return_12586269025_when_calculate_given_position_is_50() {
         long fibonacciNumber = fibonacciGenerator.getFibonacci(50);
         assertEquals(12586269025L, fibonacciNumber);
+    }
+
+    @Test
+    public void should_return_exception_when_calculate_given_position_is_0() {
+        assertThrows(InvalidParameterException.class, () -> fibonacciGenerator.getFibonacci(0));
+    }
+
+    @Test()
+    public void should_return_exception_when_calculate_given_position_is_less_than_0() {
+        assertThrows(InvalidParameterException.class, () -> fibonacciGenerator.getFibonacci(-1));
     }
 }
