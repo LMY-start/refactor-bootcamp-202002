@@ -43,4 +43,9 @@ class FibonacciGeneratorTest {
         assertEquals(3, fibonacciNumber);
     }
 
+    @Test
+    public void should_return_144_when_calculate_given_position_is_12() {
+        int fibonacciNumber = fibonacciGenerator.getFibonacci(12);
+        assertEquals(144, fibonacciNumber);
+    }
 }
