@@ -2,11 +2,22 @@ package cc.xpbootcamp.warmup.fibonacci;
 
 public class FibonacciGenerator {
     public long getFibonacci(int position) {
-        if(position <=0 ){
+        if (position <= 0) {
             throw new InvalidParameterException();
         }
-        if (position == 1 || position == 2)
+        long preFibonacciNumber = 1;
+        long prePreFibonacciNumber = 0;
+        long fibonacciNumber = 0;
+        if (position == 1) {
             return 1;
-        return getFibonacci(position - 1) + getFibonacci(position - 2);
+        }
+        int count = 1;
+        while (count < position) {
+            fibonacciNumber = preFibonacciNumber + prePreFibonacciNumber;
+            prePreFibonacciNumber = preFibonacciNumber;
+            preFibonacciNumber = fibonacciNumber;
+            count++;
+        }
+        return fibonacciNumber;
     }
 }
