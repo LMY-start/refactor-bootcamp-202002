@@ -18,8 +18,7 @@ public class OrderReceipt {
         StringBuilder output = new StringBuilder();
 
         output.append("======Printing Orders======\n");
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        output.append(order);
 
         printsLineItems(output);
         return output.toString();
@@ -38,10 +37,8 @@ public class OrderReceipt {
             output.append(lineItem.getAmount());
             output.append('\n');
 
-            // calculate sales tax @ rate of 10%
             totalSalesTax += lineItem.getSalesTax();
 
-            // calculate total amount of lineItem = price * quantity + 10 % sales tax
             totalOrderAmount += lineItem.getTotalAmount();
         }
 

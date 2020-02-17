@@ -24,4 +24,9 @@ public class Order {
     public List<LineItem> getLineItems() {
         return lineItems;
     }
+
+    @Override
+    public String toString() {
+        return customerName + customerAddress;
+    }
 }
