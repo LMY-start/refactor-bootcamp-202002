@@ -34,8 +34,15 @@ public class LineItem {
         return getAmount() * taxRate;
     }
 
-    public double getTotalAmount(){
-        return getAmount()+ getSalesTax();
+    public double getTotalAmount() {
+        return getAmount() + getSalesTax();
     }
 
+    @Override
+    public String toString() {
+        return description + '\t'
+                + price + '\t'
+                + quantity + '\t'
+                + getAmount() + '\n';
+    }
 }

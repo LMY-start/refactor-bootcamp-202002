@@ -28,14 +28,7 @@ public class OrderReceipt {
         double totalSalesTax = 0d;
         double totalOrderAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.getDescription());
-            output.append('\t');
-            output.append(lineItem.getPrice());
-            output.append('\t');
-            output.append(lineItem.getQuantity());
-            output.append('\t');
-            output.append(lineItem.getAmount());
-            output.append('\n');
+            output.append(lineItem);
 
             totalSalesTax += lineItem.getSalesTax();
 
