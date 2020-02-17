@@ -32,9 +32,15 @@ class FibonacciGeneratorTest {
     }
 
     @Test
-    public void should_return_1_when_calculate_given_position_is_3() {
+    public void should_return_2_when_calculate_given_position_is_3() {
         int fibonacciNumber = fibonacciGenerator.getFibonacci(3);
         assertEquals(2, fibonacciNumber);
+    }
+
+    @Test
+    public void should_return_3_when_calculate_given_position_is_4() {
+        int fibonacciNumber = fibonacciGenerator.getFibonacci(4);
+        assertEquals(3, fibonacciNumber);
     }
 
 }
