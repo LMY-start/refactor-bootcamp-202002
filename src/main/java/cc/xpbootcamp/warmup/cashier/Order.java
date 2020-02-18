@@ -13,20 +13,32 @@ public class Order {
         this.lineItems = lineItems;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
-
-    public List<LineItem> getLineItems() {
-        return lineItems;
-    }
-
     @Override
     public String toString() {
         return customerName + customerAddress;
+    }
+
+    public String getLineItemsPrint() {
+        StringBuilder result = new StringBuilder();
+        for (LineItem lineItem : lineItems) {
+            result.append(lineItem);
+        }
+        return result.toString();
+    }
+
+    public Double getTotalSalesTax() {
+        double totalSalesTax = 0d;
+        for (LineItem lineItem : lineItems) {
+            totalSalesTax += lineItem.getSalesTax();
+        }
+        return totalSalesTax;
+    }
+
+    public Double getTotalOrderAmount() {
+        double totalOrderAmount = 0d;
+        for (LineItem lineItem : lineItems) {
+            totalOrderAmount += lineItem.getTotalAmount();
+        }
+        return totalOrderAmount;
     }
 }
