@@ -10,7 +10,7 @@ public class OrderReceipt {
 
     public final static String HEADER = "======Printing Orders======\n";
     public final static String NEW_HEADER = "===== 老王超市，值得信赖 ======\n\n";
-    public final static String DIVIDING_LINE = "-----------------------------------";
+    public final static String DIVIDING_LINE = "-----------------------------------\n";
     public final static String NEW_FORMAT = "%s, %.2f x %d, %.2f\n";
     public final static String FORMAT = "%s\t%s\t%s\t%s\n";
 
@@ -27,9 +27,7 @@ public class OrderReceipt {
         output.append(HEADER);
         output.append(order);
         output.append(order.getLineItemsPrint(FORMAT));
-        output.append("Sales Tax").append('\t').append(order.getTotalSalesTax());
-        output.append("Total Amount").append('\t').append(order.getTotalOrderAmount());
-
+        output.append(order.getTotalSalesTaAndTotalOrderAmountWithFormat("Sales Tax\t%sTotal Amount\t%s"));
         return output.toString();
     }
 
@@ -38,9 +36,10 @@ public class OrderReceipt {
 
         output.append(NEW_HEADER);
         output.append(order.getDateWithWeekday());
-        output.append("\n");
+        output.append("\n\n");
         output.append(order.getLineItemsPrint(NEW_FORMAT));
         output.append(DIVIDING_LINE);
+        output.append(order.getTotalSalesTaAndTotalOrderAmountWithFormat("税额: %.2f\n总价: %.2f\n"));
 
         return output.toString();
     }

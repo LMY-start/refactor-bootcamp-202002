@@ -48,4 +48,9 @@ public class Order {
     public  String getDateWithWeekday(){
         return CommUtils.getDateWithWeekday(date);
     }
+
+    public  String getTotalSalesTaAndTotalOrderAmountWithFormat(String format){
+        return String.format(format,getTotalSalesTax(),getTotalOrderAmount());
+    }
+
 }
