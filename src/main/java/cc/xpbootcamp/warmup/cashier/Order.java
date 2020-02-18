@@ -21,10 +21,10 @@ public class Order {
         return customerName + customerAddress;
     }
 
-    public String getLineItemsPrint() {
+    public String getLineItemsPrint(String format) {
         StringBuilder result = new StringBuilder();
         for (LineItem lineItem : lineItems) {
-            result.append(lineItem);
+            result.append(lineItem.format(format));
         }
         return result.toString();
     }

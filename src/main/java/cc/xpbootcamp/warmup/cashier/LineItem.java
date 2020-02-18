@@ -38,11 +38,7 @@ public class LineItem {
         return getAmount() + getSalesTax();
     }
 
-    @Override
-    public String toString() {
-        return description + '\t'
-                + price + '\t'
-                + quantity + '\t'
-                + getAmount() + '\n';
+    public String format(String format ) {
+        return  String.format(format, description, price, quantity, getAmount());
     }
 }
