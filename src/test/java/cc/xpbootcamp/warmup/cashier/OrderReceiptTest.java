@@ -2,11 +2,13 @@ package cc.xpbootcamp.warmup.cashier;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cc.xpbootcamp.warmup.cashier.OrderReceipt.DIVIDING_LINE;
-import static cc.xpbootcamp.warmup.cashier.OrderReceipt.NEW_HEADER;
+import static cc.xpbootcamp.warmup.cashier.Constant.DIVIDING_LINE;
+import static cc.xpbootcamp.warmup.cashier.Constant.NEW_HEADER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
@@ -80,5 +82,23 @@ class OrderReceiptTest {
         assertThat(output, containsString("税额: 5.30\n"));
         assertThat(output, containsString("总价: 58.30\n"));
     }
+
+    @Test
+    public void should_print_line_items_right_when_print_new_receipt_give_a_order_with_date_is_Wednesday() throws ParseException {
+        List<LineItem> lineItems = new ArrayList<LineItem>() {{
+            add(new LineItem("巧克力", 21.5, 2));
+            add(new LineItem("小白菜", 10.0, 1));
+        }};
+
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, new SimpleDateFormat("yyyy-MM-dd").parse("2020-2-19")));
+
+        String output = receipt.printNewReceipt();
+
+        System.out.println(output);
+        assertThat(output, containsString("税额: 5.30\n"));
+        assertThat(output, containsString("折扣: 1.17\n"));
+        assertThat(output, containsString("总价: 57.13\n"));
+    }
+
 
 }

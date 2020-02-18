@@ -1,7 +1,12 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import jdk.internal.joptsimple.internal.Strings;
+
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static cc.xpbootcamp.warmup.cashier.Constant.discountRate;
 
 public class Order {
     String customerName;
@@ -14,6 +19,13 @@ public class Order {
         this.customerAddress = customerAddress;
         this.lineItems = lineItems;
         this.date = new Date();
+    }
+
+    public Order(String customerName, String customerAddress, List<LineItem> lineItems, Date date) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.lineItems = lineItems;
+        this.date = date;
     }
 
     @Override
@@ -45,12 +57,25 @@ public class Order {
         return totalOrderAmount;
     }
 
-    public  String getDateWithWeekday(){
+    public String getDateWithWeekday() {
         return CommUtils.getDateWithWeekday(date);
     }
 
-    public  String getTotalSalesTaAndTotalOrderAmountWithFormat(String format){
-        return String.format(format,getTotalSalesTax(),getTotalOrderAmount());
+    public String getTotalSalesTaAndTotalOrderAmount(String format) {
+        return String.format(format, getTotalSalesTax(), getTotalOrderAmount());
     }
 
+    public String getTotalSalesTaAndTotalOrderAmountWithDiscount(String format) {
+        String result = String.format(format, getTotalSalesTax(),
+                                      isWednesday() ? getTotalOrderAmount() * discountRate : 0,
+                                      isWednesday() ? getTotalOrderAmount() * (1 - discountRate) : getTotalOrderAmount());
+        if (!isWednesday()) {
+            return Arrays.stream(result.split("\n")).filter(line -> !line.contains("0.00")).reduce("", (line1, line2) -> line1 + line2 + "\n");
+        }
+        return result;
+    }
+
+    private boolean isWednesday() {
+        return WeekDay.Wednesday.equals(WeekDay.of(date));
+    }
 }
