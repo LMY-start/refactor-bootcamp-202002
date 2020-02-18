@@ -1,16 +1,19 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import java.util.Date;
 import java.util.List;
 
 public class Order {
     String customerName;
     String customerAddress;
+    Date date;
     List<LineItem> lineItems;
 
     public Order(String customerName, String customerAddress, List<LineItem> lineItems) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.lineItems = lineItems;
+        this.date = new Date();
     }
 
     @Override
@@ -40,5 +43,9 @@ public class Order {
             totalOrderAmount += lineItem.getTotalAmount();
         }
         return totalOrderAmount;
+    }
+
+    public  String getDateWithWeekday(){
+        return CommUtils.getDateWithWeekday(date);
     }
 }

@@ -7,6 +7,10 @@ package cc.xpbootcamp.warmup.cashier;
  * total sales tax) and prints it.
  */
 public class OrderReceipt {
+
+    public final static String HEADER = "======Printing Orders======\n";
+    public final static String NEW_HEADER = "===== 老王超市，值得信赖 ======\n\n";
+
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -16,7 +20,7 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        output.append("======Printing Orders======\n");
+        output.append(HEADER);
         output.append(order);
         output.append(order.getLineItemsPrint());
         output.append("Sales Tax").append('\t').append(order.getTotalSalesTax());
@@ -25,4 +29,12 @@ public class OrderReceipt {
         return output.toString();
     }
 
+    public String printNewReceipt() {
+        StringBuilder output = new StringBuilder();
+
+        output.append(NEW_HEADER);
+        output.append(order.getDateWithWeekday());
+
+        return output.toString();
+    }
 }

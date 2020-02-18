@@ -16,7 +16,6 @@ class OrderReceiptTest {
 
         String output = receipt.printReceipt();
 
-
         assertThat(output, containsString("Mr X"));
         assertThat(output, containsString("Chicago, 60601"));
     }
@@ -37,6 +36,20 @@ class OrderReceiptTest {
         assertThat(output, containsString("chocolate\t20.0\t1\t20.0\n"));
         assertThat(output, containsString("Sales Tax\t6.5"));
         assertThat(output, containsString("Total Amount\t71.5"));
+    }
+
+
+    @Test
+    public void should_print_date_when_print_new_receipt_give_a_order() {
+        Order order = new Order(null, null, new ArrayList<>());
+        OrderReceipt receipt = new OrderReceipt(order);
+
+        String output = receipt.printNewReceipt();
+        String weekday = WeekDay.of(order.date).getValue();
+
+        System.out.println(output);
+        assertThat(output, containsString(OrderReceipt.NEW_HEADER));
+        assertThat(output, containsString(weekday));
     }
 
 }
