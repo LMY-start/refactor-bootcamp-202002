@@ -1,10 +1,8 @@
 package cc.xpbootcamp.warmup.cashier;
 
 import static cc.xpbootcamp.warmup.cashier.Constant.DIVIDING_LINE;
-import static cc.xpbootcamp.warmup.cashier.Constant.FORMAT;
+import static cc.xpbootcamp.warmup.cashier.Constant.LINE_ITEM_FORMAT;
 import static cc.xpbootcamp.warmup.cashier.Constant.HEADER;
-import static cc.xpbootcamp.warmup.cashier.Constant.NEW_FORMAT;
-import static cc.xpbootcamp.warmup.cashier.Constant.NEW_HEADER;
 
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
@@ -24,23 +22,36 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        output.append(HEADER);
-        output.append(order);
-        output.append(order.getLineItemsPrint(FORMAT));
-        output.append(order.getTotalSalesTaAndTotalOrderAmount("Sales Tax\t%sTotal Amount\t%s"));
+        printHeader(output);
+        printDate(output);
+        printLineItems(output);
+        printDividingLine(output);
+        printTotal(output);
+
         return output.toString();
     }
 
-    public String printNewReceipt() {
-        StringBuilder output = new StringBuilder();
+    private void printHeader(StringBuilder output) {
+        output.append(HEADER + "\n");
+    }
 
-        output.append(NEW_HEADER);
-        output.append(order.getDateWithWeekday());
-        output.append("\n\n");
-        output.append(order.getLineItemsPrint(NEW_FORMAT));
+    private void printDate(StringBuilder output) {
+        output.append(order.getDateWithWeekday()).append("\n\n");
+    }
+
+    private void printLineItems(StringBuilder output) {
+        output.append(order.getLineItemsPrint(LINE_ITEM_FORMAT));
+    }
+
+    private void printDividingLine(StringBuilder output) {
         output.append(DIVIDING_LINE);
-        output.append(order.getTotalSalesTaAndTotalOrderAmountWithDiscount("税额: %.2f\n折扣: %.2f\n总价: %.2f\n"));
+    }
 
-        return output.toString();
+    private void printTotal(StringBuilder output) {
+        output.append(String.format("税额: %.2f\n",order.getTotalSalesTax()));
+        if (order.isDiscount()){
+            output.append(String.format("折扣: %.2f\n",order.getDiscountAmount()));
+        }
+        output.append(String.format("总价: %.2f\n",order.getDiscountedTotalAmount()));
     }
 }
