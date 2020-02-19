@@ -1,7 +1,5 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import jdk.internal.joptsimple.internal.Strings;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
