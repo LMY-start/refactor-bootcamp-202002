@@ -1,8 +1,8 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import static cc.xpbootcamp.warmup.cashier.Constant.taxRate;
-
 public class LineItem {
+    private final static double taxRate = .10;
+
     private String description;
     private double price;
     private int quantity;
@@ -27,6 +27,6 @@ public class LineItem {
     }
 
     String format(String format) {
-        return  String.format(format, description, price, quantity, getAmount());
+        return String.format(format, description, price, quantity, getAmount());
     }
 }

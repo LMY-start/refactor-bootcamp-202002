@@ -1,9 +1,5 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import static cc.xpbootcamp.warmup.cashier.Constant.DIVIDING_LINE;
-import static cc.xpbootcamp.warmup.cashier.Constant.LINE_ITEM_FORMAT;
-import static cc.xpbootcamp.warmup.cashier.Constant.HEADER;
-
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -12,6 +8,10 @@ import static cc.xpbootcamp.warmup.cashier.Constant.HEADER;
  */
 public class OrderReceipt {
 
+    private final static String LINE_ITEM_FORMAT = "%s, %.2f x %d, %.2f\n";
+
+    private final static String HEADER = "===== 老王超市，值得信赖 ======\n";
+    private final static String DIVIDING_LINE = "-----------------------------------\n";
 
     private Order order;
 
@@ -40,7 +40,7 @@ public class OrderReceipt {
     }
 
     private void printLineItems(StringBuilder output) {
-        output.append(order.getLineItemsPrint(LINE_ITEM_FORMAT));
+        order.getLineItems().forEach(lineItem -> output.append(lineItem.format(LINE_ITEM_FORMAT)));
     }
 
     private void printDividingLine(StringBuilder output) {
@@ -48,10 +48,10 @@ public class OrderReceipt {
     }
 
     private void printTotal(StringBuilder output) {
-        output.append(String.format("税额: %.2f\n",order.getTotalSalesTax()));
-        if (order.isDiscount()){
-            output.append(String.format("折扣: %.2f\n",order.getDiscountAmount()));
+        output.append(String.format("税额: %.2f\n", order.getTotalSalesTax()));
+        if (order.isDiscount()) {
+            output.append(String.format("折扣: %.2f\n", order.getDiscountAmount()));
         }
-        output.append(String.format("总价: %.2f\n",order.getDiscountedTotalAmount()));
+        output.append(String.format("总价: %.2f\n", order.getDiscountedTotalAmount()));
     }
 }

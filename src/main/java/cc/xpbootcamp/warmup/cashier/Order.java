@@ -4,9 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
-import static cc.xpbootcamp.warmup.cashier.Constant.discountRate;
-
 public class Order {
+    private final static double discountRate = .98;
+
     private String customerName;
     private String customerAddress;
     private LocalDate date;
@@ -26,23 +26,19 @@ public class Order {
         this.date = date;
     }
 
-    String getLineItemsPrint(String format) {
-        StringBuilder result = new StringBuilder();
-        for (LineItem lineItem : lineItems) {
-            result.append(lineItem.format(format));
-        }
-        return result.toString();
+    public List<LineItem> getLineItems() {
+        return lineItems;
     }
 
     String getDateWithWeekday() {
         return CommUtils.getDateWithWeekday(date);
     }
 
-    Double getDiscountAmount() {
+    double getDiscountAmount() {
         return getTotalOrderAmount() * (1 - discountRate);
     }
 
-    Double getDiscountedTotalAmount() {
+    double getDiscountedTotalAmount() {
         return isDiscount() ? getTotalOrderAmount() * discountRate : getTotalOrderAmount();
     }
 
@@ -50,7 +46,7 @@ public class Order {
         return isWednesday();
     }
 
-    Double getTotalSalesTax() {
+    double getTotalSalesTax() {
         double totalSalesTax = 0d;
         for (LineItem lineItem : lineItems) {
             totalSalesTax += lineItem.getSalesTax();
