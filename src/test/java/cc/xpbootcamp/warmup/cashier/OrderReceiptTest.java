@@ -2,8 +2,7 @@ package cc.xpbootcamp.warmup.cashier;
 
 import org.junit.jupiter.api.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +26,12 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_right_date_when_print_receipt_give_a_order() throws ParseException {
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, new ArrayList<>(),new SimpleDateFormat("yyyy-MM-dd").parse("2020-2-18")));
+    public void should_print_right_date_when_print_receipt_give_a_order() {
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, new ArrayList<>(), LocalDate.of(2020, 2, 18)));
 
         String output = receipt.printReceipt();
 
-        assertThat(output, containsString("2020年2月18日"));
+        assertThat(output, containsString("2020年2月18日，星期二"));
     }
 
     @Test
@@ -51,12 +50,12 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_not_Wednesday() throws ParseException {
+    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_not_Wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, new SimpleDateFormat("yyyy-MM-dd").parse("2020-2-18")));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, LocalDate.of(2020, 2, 18)));
 
         String output = receipt.printReceipt();
 
@@ -65,12 +64,12 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_Wednesday() throws ParseException {
+    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_Wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, new SimpleDateFormat("yyyy-MM-dd").parse("2020-2-19")));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, LocalDate.of(2020, 2, 19)));
 
         String output = receipt.printReceipt();
 
@@ -80,13 +79,13 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_all_right_when_print_new_receipt_give_a_order_with_date_is_Wednesday() throws ParseException {
+    public void should_print_all_right_when_print_new_receipt_give_a_order_with_date_is_Wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
         }};
 
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, new SimpleDateFormat("yyyy-MM-dd").parse("2020-2-19")));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, LocalDate.of(2020, 2, 19)));
         String expected = "===== 老王超市，值得信赖 ======\n"
                 + "\n"
                 + "2020年2月19日，星期三\n"

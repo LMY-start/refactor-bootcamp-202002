@@ -1,6 +1,6 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import static cc.xpbootcamp.warmup.cashier.Constant.discountRate;
@@ -8,17 +8,17 @@ import static cc.xpbootcamp.warmup.cashier.Constant.discountRate;
 public class Order {
     private String customerName;
     private String customerAddress;
-    private Date date;
+    private LocalDate date;
     private List<LineItem> lineItems;
 
     public Order(String customerName, String customerAddress, List<LineItem> lineItems) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.lineItems = lineItems;
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
-    public Order(String customerName, String customerAddress, List<LineItem> lineItems, Date date) {
+    public Order(String customerName, String customerAddress, List<LineItem> lineItems, LocalDate date) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.lineItems = lineItems;

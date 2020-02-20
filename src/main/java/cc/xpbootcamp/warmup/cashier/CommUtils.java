@@ -1,15 +1,16 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CommUtils {
-    public static String getDateWithWeekday(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
-        String dateStr = format.format(date);
-        if (dateStr.contains("年0")) {
-            dateStr = dateStr.replace("年0", "年");
-        }
-        return dateStr + "，" + WeekDay.of(date).getValue();
+
+    final static String dateFormat = "%s，%s";
+
+    public static String getDateWithWeekday(LocalDate date) {
+        return String.format(dateFormat,
+                             DateTimeFormatter.ofPattern("yyyy年M月dd日", Locale.CHINA).format(date),
+                             WeekDay.of(date).getValue());
     }
 }
