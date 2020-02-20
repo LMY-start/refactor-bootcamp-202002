@@ -31,7 +31,7 @@ public class Order {
     }
 
     String getDateWithWeekday() {
-        return CommUtils.getDateWithWeekday(date);
+        return DateFormatter.getDateWithWeekday(date);
     }
 
     double getDiscountAmount() {
