@@ -40,7 +40,15 @@ public class OrderReceipt {
     }
 
     private void printLineItems(StringBuilder output) {
-        order.getLineItems().forEach(lineItem -> output.append(lineItem.format(LINE_ITEM_FORMAT)));
+        order.getLineItems().forEach(lineItem -> output.append(formatLineItem(lineItem)));
+    }
+
+    String formatLineItem(LineItem lineItem) {
+        return String.format(LINE_ITEM_FORMAT,
+                             lineItem.getDescription(),
+                             lineItem.getPrice(),
+                             lineItem.getQuantity(),
+                             lineItem.getAmount());
     }
 
     private void printDividingLine(StringBuilder output) {

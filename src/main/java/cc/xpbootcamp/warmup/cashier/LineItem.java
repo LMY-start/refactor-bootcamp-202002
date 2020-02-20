@@ -14,7 +14,19 @@ public class LineItem {
         this.quantity = quantity;
     }
 
-    private double getAmount() {
+    public String getDescription() {
+        return description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    double getAmount() {
         return price * quantity;
     }
 
@@ -24,9 +36,5 @@ public class LineItem {
 
     double getTotalAmount() {
         return getAmount() + getSalesTax();
-    }
-
-    String format(String format) {
-        return String.format(format, description, price, quantity, getAmount());
     }
 }
