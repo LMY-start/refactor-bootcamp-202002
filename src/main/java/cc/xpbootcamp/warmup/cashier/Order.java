@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static cc.xpbootcamp.warmup.cashier.Constant.discountRate;
-import static cc.xpbootcamp.warmup.cashier.Constant.wednesday;
 
 public class Order {
     private String customerName;

@@ -8,6 +8,6 @@ class Constant {
     final static double taxRate = .10;
     final static double discountRate = .98;
     final static String dateFormat = "yyyy年M月dd日，EEEE";
-    final static String wednesday = "星期三";
+    final static String weekDayFormat = "EEEE";
 
 }

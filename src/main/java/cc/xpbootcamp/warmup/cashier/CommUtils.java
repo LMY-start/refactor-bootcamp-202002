@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import static cc.xpbootcamp.warmup.cashier.Constant.dateFormat;
+import static cc.xpbootcamp.warmup.cashier.Constant.weekDayFormat;
 
 public class CommUtils {
 
@@ -13,6 +14,6 @@ public class CommUtils {
     }
 
     public static String getWeekday(LocalDate date) {
-        return DateTimeFormatter.ofPattern("EEEE", Locale.CHINA).format(date);
+        return DateTimeFormatter.ofPattern(weekDayFormat, Locale.CHINA).format(date);
     }
 }
