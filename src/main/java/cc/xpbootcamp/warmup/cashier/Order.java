@@ -1,5 +1,6 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -67,6 +68,6 @@ public class Order {
     }
 
     private boolean isWednesday() {
-        return wednesday.equals(CommUtils.getWeekday(date));
+        return DayOfWeek.WEDNESDAY.equals(date.getDayOfWeek());
     }
 }
