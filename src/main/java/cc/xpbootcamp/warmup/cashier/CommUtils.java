@@ -4,13 +4,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import static cc.xpbootcamp.warmup.cashier.Constant.dateFormat;
+
 public class CommUtils {
 
-    final static String dateFormat = "%s，%s";
-
     public static String getDateWithWeekday(LocalDate date) {
-        return String.format(dateFormat,
-                             DateTimeFormatter.ofPattern("yyyy年M月dd日", Locale.CHINA).format(date),
-                             WeekDay.of(date).getValue());
+        return DateTimeFormatter.ofPattern(dateFormat, Locale.CHINA).format(date);
+    }
+
+    public static String getWeekday(LocalDate date) {
+        return DateTimeFormatter.ofPattern("EEEE", Locale.CHINA).format(date);
     }
 }

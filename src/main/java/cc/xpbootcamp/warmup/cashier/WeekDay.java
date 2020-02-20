@@ -17,10 +17,6 @@ public enum WeekDay {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public static WeekDay of(LocalDate date) {
         return WeekDay.values()[date.getDayOfWeek().getValue()-1];
     }
