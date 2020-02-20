@@ -50,7 +50,7 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_not_Wednesday() {
+    public void should_print_total_sales_tax_and_total_amount_right_when_print_receipt_give_a_order_with_date_is_not_wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
@@ -64,7 +64,7 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_totalSalesTax_and_totalAmount_right_when_print_receipt_give_a_order_with_date_is_Wednesday() {
+    public void should_print_total_sales_tax_and_total_amount_right_when_print_receipt_give_a_order_with_date_is_wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
@@ -79,7 +79,7 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void should_print_all_right_when_print_new_receipt_give_a_order_with_date_is_Wednesday() {
+    public void should_print_all_right_when_print_new_receipt_give_a_order_with_date_is_wednesday() {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.0, 1));
