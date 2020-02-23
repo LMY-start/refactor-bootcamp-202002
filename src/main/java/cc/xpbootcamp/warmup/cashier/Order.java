@@ -34,19 +34,19 @@ public class Order {
         return DateFormatter.getDateWithWeekday(date);
     }
 
-    double getDiscountAmount() {
-        return getTotalOrderAmount() * (1 - discountRate);
+    double calculateDiscountAmount() {
+        return calculateTotalOrderAmount() * (1 - discountRate);
     }
 
-    double getDiscountedTotalAmount() {
-        return isDiscount() ? getTotalOrderAmount() * discountRate : getTotalOrderAmount();
+    double calculateDiscountedTotalAmount() {
+        return isDiscount() ? calculateTotalOrderAmount() * discountRate : calculateTotalOrderAmount();
     }
 
     boolean isDiscount() {
         return isWednesday();
     }
 
-    double getTotalSalesTax() {
+    double calculateTotalSalesTax() {
         double totalSalesTax = 0d;
         for (LineItem lineItem : lineItems) {
             totalSalesTax += lineItem.getSalesTax();
@@ -54,10 +54,10 @@ public class Order {
         return totalSalesTax;
     }
 
-    private Double getTotalOrderAmount() {
+    private Double calculateTotalOrderAmount() {
         double totalOrderAmount = 0d;
         for (LineItem lineItem : lineItems) {
-            totalOrderAmount += lineItem.getTotalAmount();
+            totalOrderAmount += lineItem.calculateTotalAmount();
         }
         return totalOrderAmount;
     }

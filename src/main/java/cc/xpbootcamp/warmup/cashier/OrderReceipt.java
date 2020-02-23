@@ -53,11 +53,11 @@ public class OrderReceipt {
     private String generateTotal() {
         StringBuilder output = new StringBuilder();
         output.append(DIVIDING_LINE);
-        output.append(String.format("税额: %.2f\n", order.getTotalSalesTax()));
+        output.append(String.format("税额: %.2f\n", order.calculateTotalSalesTax()));
         if (order.isDiscount()) {
-            output.append(String.format("折扣: %.2f\n", order.getDiscountAmount()));
+            output.append(String.format("折扣: %.2f\n", order.calculateDiscountAmount()));
         }
-        output.append(String.format("总价: %.2f\n", order.getDiscountedTotalAmount()));
+        output.append(String.format("总价: %.2f\n", order.calculateDiscountedTotalAmount()));
         return output.toString();
     }
 }
